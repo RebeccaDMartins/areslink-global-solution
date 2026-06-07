@@ -1,0 +1,38 @@
+{
+  "messages": [
+    {
+      "id": 1780865650519,
+      "sender": "Terra",
+      "receiver": "Marte",
+      "title": "Painel Solar",
+      "content": "Verificar integridade estrutural",
+      "status": "transmitting",
+      "createdAt": "2026-06-07T20:54:10.520Z"
+    },
+    {
+      "id": 1780866665894,
+      "sender": "Terra",
+      "receiver": "Marte",
+      "title": "Teste de Latência",
+      "content": "Mensagem enviada para Marte",
+      "status": "received",
+      "createdAt": "2026-06-07T21:11:05.894Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1780867241266,
+      "title": "Inspecionar Painel Solar",
+      "priority": "Alta",
+      "assignedTo": "Rebecca",
+      "status": "Concluída"
+    }
+  ],
+  "mission": {
+    "missionDay": 184,
+    "status": "Operacional",
+    "oxygen": 92,
+    "water": 88,
+    "energy": 95
+  }
+}
