@@ -17,11 +17,27 @@
       "content": "Mensagem enviada para Marte",
       "status": "received",
       "createdAt": "2026-06-07T21:11:05.894Z"
+    },
+    {
+      "id": 1780876447845,
+      "sender": "Terra",
+      "receiver": "Marte",
+      "title": "Teste de comunicação",
+      "content": "Verificar sistema de suporte de vida.",
+      "status": "received",
+      "createdAt": "2026-06-07T23:54:07.845Z"
     }
   ],
   "tasks": [
     {
       "id": 1780867241266,
+      "title": "Inspecionar Painel Solar",
+      "priority": "Alta",
+      "assignedTo": "Rebecca",
+      "status": "Concluída"
+    },
+    {
+      "id": 1780877093231,
       "title": "Inspecionar Painel Solar",
       "priority": "Alta",
       "assignedTo": "Rebecca",
