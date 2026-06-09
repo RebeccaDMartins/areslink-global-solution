@@ -6,7 +6,7 @@ function Dashboard() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3000/mission")
+            .get("https://areslink-backend.onrender.com/mission")
             .then((response) => {
                 setMission(response.data);
             });

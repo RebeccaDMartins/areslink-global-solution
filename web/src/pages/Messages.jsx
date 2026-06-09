@@ -8,7 +8,7 @@ function Messages() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3000/messages")
+            .get("https://areslink-backend.onrender.com/messages")
             .then((response) => {
                 setMessages(response.data);
             });
@@ -23,7 +23,7 @@ function Messages() {
         };
 
         const response = await axios.post(
-            "http://localhost:3000/messages",
+            "https://areslink-backend.onrender.com/messages",
             newMessage
         );
 

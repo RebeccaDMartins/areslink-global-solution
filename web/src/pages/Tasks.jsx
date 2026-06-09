@@ -9,7 +9,7 @@ function Tasks() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3000/tasks")
+            .get("https://areslink-backend.onrender.com/tasks")
             .then((response) => {
                 setTasks(response.data);
             });
@@ -23,7 +23,7 @@ function Tasks() {
         };
 
         const response = await axios.post(
-            "http://localhost:3000/tasks",
+            "https://areslink-backend.onrender.com/tasks",
             newTask
         );
 
@@ -35,13 +35,9 @@ function Tasks() {
     };
 
     const handleCompleteTask = async (id) => {
-        console.log("Cliquei na tarefa:", id);
-
         const response = await axios.put(
-            `http://localhost:3000/tasks/${id}`
+            `https://areslink-backend.onrender.com/tasks/${id}`
         );
-
-        console.log("Resposta da API:", response.data);
 
         const updatedTasks = tasks.map((task) => {
             if (task.id === id) {
