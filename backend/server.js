@@ -82,7 +82,7 @@ app.post("/messages", (req, res) => {
         receiver: req.body.receiver,
         title: req.body.title,
         content: req.body.content,
-        status: "transmitting",
+        status: "Transmitindo",
         createdAt: new Date().toISOString()
     };
 
@@ -97,7 +97,7 @@ app.post("/messages", (req, res) => {
         );
 
         if (message) {
-            message.status = "received";
+            message.status = "Recebida";
 
             fs.writeFileSync(
                 "db.json",

@@ -28,7 +28,6 @@ function Tasks() {
         );
 
         setTasks([...tasks, response.data]);
-
         setTitle("");
         setPriority("");
         setAssignedTo("");
@@ -50,49 +49,86 @@ function Tasks() {
         setTasks(updatedTasks);
     };
 
+    const getPriorityClass = (priority) => {
+        if (priority === "Alta") return "priority-high";
+        if (priority === "Média") return "priority-medium";
+        return "priority-low";
+    };
+
     return (
         <main className="container">
-            <h2 className="title">Tarefas da Missão</h2>
+            <section className="page-header">
+                <span className="eyebrow">Operação da Missão</span>
+                <h2 className="title">Centro Operacional</h2>
+                <p className="dashboard-description">
+                    Crie, acompanhe e conclua tarefas críticas relacionadas à missão.
+                </p>
+            </section>
 
-            <div className="form">
-                <input
-                    type="text"
-                    placeholder="Título da tarefa"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                />
+            <section className="panel">
+                <h3>Nova Tarefa</h3>
 
-                <input
-                    type="text"
-                    placeholder="Prioridade"
-                    value={priority}
-                    onChange={(event) => setPriority(event.target.value)}
-                />
+                <div className="form">
+                    <input
+                        type="text"
+                        placeholder="Título da tarefa"
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
+                    />
 
-                <input
-                    type="text"
-                    placeholder="Responsável"
-                    value={assignedTo}
-                    onChange={(event) => setAssignedTo(event.target.value)}
-                />
+                    <input
+                        type="text"
+                        placeholder="Prioridade: Alta, Média ou Baixa"
+                        value={priority}
+                        onChange={(event) => setPriority(event.target.value)}
+                    />
 
-                <button onClick={handleSubmit}>
-                    Criar Tarefa
-                </button>
-            </div>
+                    <input
+                        type="text"
+                        placeholder="Responsável"
+                        value={assignedTo}
+                        onChange={(event) => setAssignedTo(event.target.value)}
+                    />
+
+                    <button onClick={handleSubmit}>
+                        Criar Tarefa
+                    </button>
+                </div>
+            </section>
 
             <section className="cards">
                 {tasks.map((task) => (
-                    <div className="card" key={task.id}>
+                    <article className="task-card" key={task.id}>
+                        <div className="card-topline">
+                            <span>Tarefa</span>
+                            <span
+                                className={
+                                    task.status === "Concluída"
+                                        ? "status-success"
+                                        : "status-warning"
+                                }
+                            >
+                                {task.status}
+                            </span>
+                        </div>
+
                         <h3>{task.title}</h3>
-                        <p><strong>Prioridade:</strong> {task.priority}</p>
-                        <p><strong>Responsável:</strong> {task.assignedTo}</p>
-                        <p><strong>Status:</strong> {task.status}</p>
+
+                        <p>
+                            <strong>Prioridade:</strong>
+                            <span className={getPriorityClass(task.priority)}>
+                                {task.priority}
+                            </span>
+                        </p>
+
+                        <p>
+                            <strong>Responsável:</strong> {task.assignedTo}
+                        </p>
 
                         <button onClick={() => handleCompleteTask(task.id)}>
                             Concluir Tarefa
                         </button>
-                    </div>
+                    </article>
                 ))}
             </section>
         </main>

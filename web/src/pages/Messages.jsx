@@ -28,43 +28,78 @@ function Messages() {
         );
 
         setMessages([...messages, response.data]);
-
         setTitle("");
         setContent("");
     };
 
+    const formatStatus = (status) => {
+        if (status === "received") return "Recebida";
+        if (status === "transmitting") return "Transmitindo";
+        return status;
+    };
+
     return (
         <main className="container">
-            <h2 className="title">Comunicações da Missão</h2>
+            <section className="page-header">
+                <span className="eyebrow">Terra e Marte</span>
+                <h2 className="title">Centro de Comunicações</h2>
+                <p className="dashboard-description">
+                    Envie instruções para a tripulação e acompanhe o histórico de
+                    mensagens da missão.
+                </p>
+            </section>
 
-            <div className="form">
-                <input
-                    type="text"
-                    placeholder="Assunto da mensagem"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                />
+            <section className="panel">
+                <h3>Nova Transmissão</h3>
 
-                <textarea
-                    placeholder="Digite a mensagem"
-                    value={content}
-                    onChange={(event) => setContent(event.target.value)}
-                />
+                <div className="form">
+                    <input
+                        type="text"
+                        placeholder="Assunto da mensagem"
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
+                    />
 
-                <button onClick={handleSubmit}>
-                    Enviar para Marte
-                </button>
-            </div>
+                    <textarea
+                        placeholder="Digite a mensagem"
+                        value={content}
+                        onChange={(event) => setContent(event.target.value)}
+                    />
+
+                    <button onClick={handleSubmit}>
+                        Enviar para Marte
+                    </button>
+                </div>
+            </section>
 
             <section className="cards">
                 {messages.map((message) => (
-                    <div className="card" key={message.id}>
+                    <article className="message-card" key={message.id}>
+                        <div className="card-topline">
+                            <span>Transmissão</span>
+                            <span
+                                className={
+                                    formatStatus(message.status) === "Recebida"
+                                        ? "status-success"
+                                        : "status-warning"
+                                }
+                            >
+                                {formatStatus(message.status)}
+                            </span>
+                        </div>
+
                         <h3>{message.title}</h3>
-                        <p><strong>De:</strong> {message.sender}</p>
-                        <p><strong>Para:</strong> {message.receiver}</p>
+
+                        <p>
+                            <strong>De:</strong> {message.sender}
+                        </p>
+
+                        <p>
+                            <strong>Para:</strong> {message.receiver}
+                        </p>
+
                         <p>{message.content}</p>
-                        <p><strong>Status:</strong> {message.status}</p>
-                    </div>
+                    </article>
                 ))}
             </section>
         </main>

@@ -14,33 +14,52 @@ function Dashboard() {
 
     return (
         <main className="container">
-            <h2 className="title">Dashboard da Missão</h2>
+            <section className="dashboard-header">
+                <div>
+                    <span className="eyebrow">Centro de Controle</span>
+                    <h2 className="title">Dashboard da Missão</h2>
+                    <p className="dashboard-description">
+                        Monitoramento em tempo real dos principais indicadores da missão AresLink.
+                    </p>
+                </div>
+
+                {mission && (
+                    <div className="mission-day-panel">
+                        <span>Dia da Missão</span>
+                        <strong>{mission.missionDay}</strong>
+                    </div>
+                )}
+            </section>
 
             {mission && (
-                <section className="cards">
-                    <div className="card">
-                        <h3>Dia da Missão</h3>
-                        <p>{mission.missionDay}</p>
+                <section className="mission-grid">
+                    <div className="status-panel">
+                        <span>Status Operacional</span>
+                        <strong>{mission.status}</strong>
                     </div>
 
-                    <div className="card">
-                        <h3>Status</h3>
-                        <p>{mission.status}</p>
+                    <div className="resource-card">
+                        <span>Oxigênio</span>
+                        <strong>{mission.oxygen}%</strong>
+                        <div className="progress-bar">
+                            <div style={{ width: `${mission.oxygen}%` }}></div>
+                        </div>
                     </div>
 
-                    <div className="card">
-                        <h3>Oxigênio</h3>
-                        <p>{mission.oxygen}%</p>
+                    <div className="resource-card">
+                        <span>Água</span>
+                        <strong>{mission.water}%</strong>
+                        <div className="progress-bar">
+                            <div style={{ width: `${mission.water}%` }}></div>
+                        </div>
                     </div>
 
-                    <div className="card">
-                        <h3>Água</h3>
-                        <p>{mission.water}%</p>
-                    </div>
-
-                    <div className="card">
-                        <h3>Energia</h3>
-                        <p>{mission.energy}%</p>
+                    <div className="resource-card">
+                        <span>Energia</span>
+                        <strong>{mission.energy}%</strong>
+                        <div className="progress-bar">
+                            <div style={{ width: `${mission.energy}%` }}></div>
+                        </div>
                     </div>
                 </section>
             )}
